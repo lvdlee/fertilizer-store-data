@@ -14,10 +14,10 @@ func migrate(ctx context.Context, db *gorm.DB) {
 	db.AutoMigrate(&models.User{}, &models.Fertilizer{})
 }
 
-func Setup(ctx context.Context) *gorm.DB {
-	db, err := gorm.Open(sqlite.Open("fertilizer.db"), &gorm.Config{})
+func Setup(ctx context.Context, path string) *gorm.DB {
+	db, err := gorm.Open(sqlite.Open(path), &gorm.Config{})
 	if err != nil {
-		log.Fatalf("failed opening db: %s", err)
+		log.Fatalf("failed opening db: %s\n", err)
 	}
 
 	migrate(ctx, db)

@@ -4,7 +4,6 @@ import "gorm.io/gorm"
 
 type Fertilizer struct {
 	gorm.Model
-	id          string
 	name        string
 	brand       string
 	strength    int

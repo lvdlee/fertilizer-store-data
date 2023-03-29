@@ -11,11 +11,10 @@ import (
 
 func migrate(ctx context.Context, db *gorm.DB) {
 	// Migrate the schema
-	db.AutoMigrate(&models.User{})
-	db.AutoMigrate(&models.Fertilizer{})
+	db.AutoMigrate(&models.User{}, &models.Fertilizer{})
 }
 
-func setup(ctx context.Context) *gorm.DB {
+func Setup(ctx context.Context) *gorm.DB {
 	db, err := gorm.Open(sqlite.Open("fertilizer.db"), &gorm.Config{})
 	if err != nil {
 		log.Fatalf("failed opening db: %s", err)
